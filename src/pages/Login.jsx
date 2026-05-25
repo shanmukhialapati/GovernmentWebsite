@@ -1,52 +1,138 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { FaClock, FaTools, FaArrowLeft, FaEnvelope } from "react-icons/fa";
+import React, { useState } from 'react';
+import { FaUniversity } from 'react-icons/fa';
 
-const ComingSoon = () => {
+const LoginPage = () => {
+  const [isLogin, setIsLogin] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  // States for user input
+  const [inputName, setInputName] = useState("");
+  const [inputId, setInputId] = useState("");
+  const [inputPass, setInputPass] = useState("");
+
+  // Static Credentials
+  const STATIC_NAME = "Rahul Sharma";
+  const STATIC_ID = "EDU12345";
+  const STATIC_PASS = "admin123";
+
+  const handleAction = () => {
+    if (isLogin) {
+      if (inputId === STATIC_ID && inputPass === STATIC_PASS) {
+        setIsLoggedIn(true);
+      } else {
+        alert("Invalid ID or Password!");
+      }
+    } else {
+      if (inputName === STATIC_NAME && inputId === STATIC_ID && inputPass === STATIC_PASS) {
+        alert("Registration Successful! Now please login.");
+        setIsLogin(true);
+      } else {
+        alert("Please enter the correct demo details.");
+      }
+    }
+  };
+
+  if (isLoggedIn) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <h1 className="text-4xl font-bold text-[#003366]">Welcome to Teacher Portal Home, {STATIC_NAME}!</h1>
+      </div>
+    );
+  }
+
+  const loginImageUrl = "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202304/a_teacher_uses_a_puppet_as_a_teaching_material_in_government_model_sanskriti_primary_school_in_sector_20_panchkula_haryana-sixteen_nine.jpg?VersionId=ccs5M4ZMN1kPE7I5Z.C9VuvaptMfHI12";
+  const signupImageUrl = "https://img.jagranjosh.com/imported/images/E/Articles/teachers_4.jpg";
+
   return (
-    <div className="min-h-screen flex items-center justify-center ">
-      <div className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full p-10 text-center">
-        <div className="w-24 h-24 mx-auto bg-[#E8F0FE] rounded-full flex items-center justify-center mb-6">
-          <FaTools className="text-[#0B3D91] text-4xl" />
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 p-6">
+      <div className="flex flex-col md:flex-row w-full max-w-5xl bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-200">
+        
+        {/* Left Side: Image with Dark Blue Overlay */}
+        <div className="w-full md:w-[50%] relative flex flex-col items-center justify-center p-6 text-white text-center overflow-hidden">
+          <img 
+            src={isLogin ? loginImageUrl : signupImageUrl} 
+            alt="Portal" 
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+          />
+          <div className="absolute inset-0 bg-[#003366]/60"></div>
+
+          <div className="relative z-10 flex flex-col items-center">
+            <h1 className="text-4xl font-bold tracking-wider uppercase mb-2">
+              {isLogin ? "Government" : "Join Our"}
+            </h1>
+            <h2 className="text-xl font-medium opacity-90 mb-10">
+              {isLogin ? "Teacher Portal" : "Educator Registration"}
+            </h2>
+            
+            <div className="border-t border-blue-400/30 pt-8 mt-4">
+              <p className="italic font-light text-blue-100 max-w-xs leading-relaxed">
+                {isLogin 
+                  ? '"Education is the most powerful weapon which you can use to change the world."'
+                  : '"Shape the future by joining our community of dedicated educators today."'}
+              </p>
+              <span className="block mt-4 text-sm font-semibold tracking-widest text-blue-300 uppercase">
+                {isLogin ? "Empowering Educators" : "Start Your Journey"}
+              </span>
+            </div>
+          </div>
         </div>
 
-        {/* Heading */}
-        <h1 className="text-4xl md:text-5xl font-bold text-[#0B3D91] mb-4">
-          Coming Soon
-        </h1>
+        {/* Right Side: Dynamic Form */}
+        <div className="w-full md:w-[55%] p-4 lg:p-6 flex flex-col justify-center bg-white">
+          <div className="max-w-sm mx-auto w-full">
+            
+            <div className="flex items-center gap-3 mb-4">
+              <div className="bg-[#0B3D91] p-2 rounded-lg">
+                <FaUniversity className="text-white text-xl" />
+              </div>
+              <h3 className="text-3xl font-bold text-gray-800">
+                {isLogin ? "Welcome Back" : "Create Account"}
+              </h3>
+            </div>
 
-        {/* Sub Text */}
-        <p className="text-gray-600 text-lg leading-relaxed mb-8">
-          This page is currently under development.
-          <br />
-          We are working hard to bring new features and updates to the
-          Government Teacher Portal.
-        </p>
+            <p className="text-gray-500 mb-8">
+              {isLogin ? "Please enter your credentials to access the portal." : "Register to get started with the portal."}
+            </p>
+            
+            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+              {!isLogin && (
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
+                  <input type="text" onChange={(e) => setInputName(e.target.value)} className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition" placeholder="Rahul Sharma" />
+                </div>
+              )}
 
-        {/* Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link
-            to="/"
-            className="flex items-center gap-2 bg-[#0B3D91] hover:bg-[#072c6b] text-white px-6 py-3 rounded-xl font-medium transition-all duration-300"
-          >
-            <FaArrowLeft />
-            Back to Home
-          </Link>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Employee ID</label>
+                <input type="text" onChange={(e) => setInputId(e.target.value)} className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition" placeholder="e.g., EDU12345" />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
+                <input type="password" onChange={(e) => setInputPass(e.target.value)} className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-600 outline-none transition" placeholder="Enter secure password" />
+              </div>
 
-          <Link
-            to="/contact"
-            className="border border-[#0B3D91] text-[#0B3D91] hover:bg-[#0B3D91] hover:text-white px-6 py-3 rounded-xl font-medium transition-all duration-300"
-          >
-            Contact Support
-          </Link>
+              <button 
+                onClick={handleAction}
+                className="w-full bg-[#003366] text-white py-3 rounded-xl font-bold text-lg hover:bg-blue-950 transition-all shadow-lg shadow-blue-900/20"
+              >
+                {isLogin ? "Login to Portal" : "Sign Up"}
+              </button>
+            </form>
+
+            <div className="mt-8 text-center">
+              <button 
+                onClick={() => setIsLogin(!isLogin)}
+                className="text-sm text-blue-700 hover:underline font-semibold cursor-pointer"
+              >
+                {isLogin ? "Don't have an account? Sign up" : "Already have an account? Login"}
+              </button>
+            </div>
+          </div>
         </div>
-
-        <p className="text-xs text-gray-400 mt-8">
-          Government Education Resource Portal
-        </p>
       </div>
     </div>
   );
 };
 
-export default ComingSoon;
+export default LoginPage;
