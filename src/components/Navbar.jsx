@@ -67,7 +67,13 @@ const Navbar = () => {
           </Link>
 
           <div className="relative group">
-            <button className={getStyle(["/activities", "/", "/team"])}>
+            <button
+              className={getStyle([
+                "/activities",
+                "/newsletters",
+                "/downloads",
+              ])}
+            >
               Activities
               <FaChevronDown size={10} />
             </button>
