@@ -115,12 +115,21 @@ const Navbar = () => {
             Contact
           </Link>
 
-          <Link
-            to="/login"
-            className="ml-3 bg-[#0B3D91] hover:bg-[#072c6b] text-white px-5 py-2 rounded-md font-medium transition-all duration-200"
-          >
-            Login / Register
-          </Link>
+        {window.isLoggedIn ? (
+  <Link
+    to="/Profile"
+    className="ml-3 bg-[#0B3D91] text-white  px-5 py-2 rounded-md font-semibold transition-all duration-200"
+  >
+    Profile
+  </Link>
+) : (
+  <Link
+    to="/Login"
+    className="ml-3 bg-[#0B3D91] hover:bg-[#072c6b] text-white px-5 py-2 rounded-md font-medium transition-all duration-200"
+  >
+    Login / Register
+  </Link>
+)}
         </nav>
 
         <button
@@ -215,13 +224,23 @@ const Navbar = () => {
             Contact
           </Link>
 
-          <Link
-            to="/login"
-            onClick={closeMobileMenu}
-            className="bg-[#0B3D91] text-white px-4 py-2 rounded-md text-center mt-2"
-          >
-            Login / Register
-          </Link>
+        {window.isLoggedIn ? (
+  <Link
+    to="/Profile"
+    onClick={closeMobileMenu}
+    className="bg-[#0B3D91] text-white  px-4 py-2 rounded-md text-center font-semibold mt-2"
+  >
+    Profile
+  </Link>
+) : (
+  <Link
+    to="/Login"
+    onClick={closeMobileMenu}
+    className="bg-[#0B3D91] text-white px-4 py-2 rounded-md text-center mt-2"
+  >
+    Login / Register
+  </Link>
+)}
         </nav>
       )}
     </header>

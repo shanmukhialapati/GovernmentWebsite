@@ -22,7 +22,7 @@ const LoginPage = () => {
 
       // LOGIN CHECK
       if (inputId === STATIC_ID && inputPass === STATIC_PASS) {
-
+window.isLoggedIn = true;
         // NAVIGATE TO HOME PAGE
         navigate("/home");
 
