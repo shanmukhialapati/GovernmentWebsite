@@ -48,7 +48,7 @@ const Navbar = () => {
 
           <div>
             <h1 className="text-xl md:text-2xl font-bold text-[#0B3D91] leading-tight">
-              User Portal
+              Teacher Portal
             </h1>
             <p className="text-[12px] tracking-wide text-gray-600">
               Government Education Department
