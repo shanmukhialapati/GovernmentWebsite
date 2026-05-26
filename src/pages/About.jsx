@@ -45,7 +45,6 @@ import {
   FaDesktop,
 } from "react-icons/fa";
 
-/* ─── Scroll-reveal hook ─────────────────────────────────── */
 function useScrollReveal(threshold = 0.15) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -414,7 +413,7 @@ const AboutPage = () => {
           />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 md:px-10 py-20 flex flex-col items-center text-center">
+        <div className="relative max-w-7xl mx-auto px-6 md:px-10 py-16 flex flex-col items-center text-center">
           {/* breadcrumb */}
           <p className="hero-breadcrumb text-white/50 text-xs mb-6 flex items-center gap-1">
             <Link to="/" className="hover:text-white transition-colors">
